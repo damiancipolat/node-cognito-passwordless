@@ -1,0 +1,13 @@
+{
+  "server": {
+    "port": 8080,
+    "killTimeout": 100
+  },
+  "db": {
+    "arn": "arn:aws:dynamodb:us-east-1:302353397077:table/emails",
+    "table": "emails"
+  },
+  "AWS": {
+    "region": "us-east-1"
+  }
+}
