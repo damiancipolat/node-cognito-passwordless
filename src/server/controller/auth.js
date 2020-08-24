@@ -6,6 +6,10 @@ const {
   useCode
 } = require('../../services/signUp.js');
 
+const {
+  createEmailUser
+} = require('../../services/user.js');
+
 /**
  * Validate a email format using regex.
  * @param {string} email
@@ -54,7 +58,6 @@ const signUpEmail = async (req, res, next) => {
 
 };
 
-
 /**
  * Verificate email controller
  * @param {object} req request object.
@@ -85,10 +88,11 @@ const verifyEmail = async (req, res, next) => {
     await useCode(code);
 
     //Create the user in cognito by the email.
-    await createEmailUser(code);
+    const authResult = await createEmailUser(code);
 
     res.status(200).json({
-      code
+      code,
+      auth: authResult
     });
 
   } catch (error) {
@@ -97,6 +101,10 @@ const verifyEmail = async (req, res, next) => {
   };
 
 };
+
+const signInEmail = async (req, res, next) => {
+  
+}
 
 module.exports = {
   signUpEmail,
